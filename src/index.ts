@@ -15,7 +15,7 @@ interface Options {
     extensions?: string[];
 }
 
-export async function setupFileRouter(router: Router, options?: Options) {
+async function setupFileRouter(router: Router, options?: Options) {
     if (!router) {
         throw new Error('Router must be set up.');
     }
@@ -66,13 +66,4 @@ function createRoute(router: Router, route: string, method: HttpMethod, handler:
     console.log(`[File Router] Created route ${route} with ${method.toUpperCase()} method.`)
 }
 
-
-setupFileRouter({
-    GET: () => {
-    },
-    POST: () => {
-
-    }
-}, {
-    directory: './src/routes'
-});
+export { setupFileRouter }
