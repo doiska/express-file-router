@@ -61,9 +61,11 @@ async function getFiles(dir: string, extensions = ['ts', 'js']) {
 }
 
 function createRoute(router: Router, route: string, method: HttpMethod, handler: Function) {
+    route = route.replace(/\[([^\]]+)]/g, ':$1');
+
     router[method.toLowerCase() as HttpMethod]?.(route, handler);
 
-    console.log(`[File Router] Created route ${route} with ${method.toUpperCase()} method.`)
+    console.log(`[File Router] Created route ${route} with ${method.toUpperCase()} method.`);
 }
 
 export { setupFileRouter }
