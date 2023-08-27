@@ -20,13 +20,24 @@ setupFileRouter(app, {
     extensions: ['.ts', '.js']
 });
 ```
-Directory example:
+## Directory example:
+
+### Simple example:
 
 ```lua
 routes/
 |-- index.ts
 |-- posts/
 |-- |-- index.ts
+```
+### You can also use Slugs (> v1.2.0)!
+
+```lua
+routes/
+|-- index.ts
+|-- posts/
+|-- |-- [postId]
+|-- |-- |-- index.ts
 ```
 
 The handler methods are declarated using ```exported functions```, for example:
