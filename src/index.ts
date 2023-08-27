@@ -31,9 +31,9 @@ async function setupFileRouter(router: Router, options?: Options) {
 
         const cleanedDirectory = path.parse(file).dir
             .replace(routerDirectory, '')
-            .replace('\\', '/');
+            .replaceAll('\\', '/');
 
-        const routeDirectory = cleanedDirectory.trim() === '' ? '/' : cleanedDirectory;
+        const routeDirectory = (cleanedDirectory.trim() === '' ? '/' : cleanedDirectory);
         const methods = Object.keys(handler)
             .filter(handlerMethod => VALID_HTTP_METHODS.includes(handlerMethod as HttpMethod)) as HttpMethod[];
 
@@ -61,8 +61,8 @@ async function getFiles(dir: string, extensions = ['ts', 'js']) {
 }
 
 function createRoute(router: Router, route: string, method: HttpMethod, handler: Function) {
-    route = route.replace(/\[([^\]]+)]/g, ':$1');
 
+    route = route.split('/').map(part => part.replace(/\[([^\]]+)\]/g, ':$1')).join('/');
     router[method.toLowerCase() as HttpMethod]?.(route, handler);
 
     console.log(`[File Router] Created route ${route} with ${method.toUpperCase()} method.`);
