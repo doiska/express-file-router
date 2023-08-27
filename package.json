@@ -1,5 +1,5 @@
 {
-  "name": "express-file-router",
+  "name": "express-router-fs",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
